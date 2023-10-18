@@ -1,11 +1,16 @@
 package br.com.fescfafic.listaencapsulamento.Model;
 
-public abstract class Veiculo {
+import br.com.fescfafic.listaencapsulamento.Contratos.IVeiculoComportamento;
+
+public abstract class Veiculo implements IVeiculoComportamento {
+
     protected int anoDeFabricacao;
     protected String modelo;
     protected String marca;
+    protected double velocidadeAtual = 0;
 
     public Veiculo() {}
+
     public Veiculo(int anoDeFabricacao, String modelo, String marca) {
         this.anoDeFabricacao = anoDeFabricacao;
         this.modelo = modelo;
@@ -35,4 +40,5 @@ public abstract class Veiculo {
     public void setMarca(String marca) {
         this.marca = marca;
     }
+
 }
