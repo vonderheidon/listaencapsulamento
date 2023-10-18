@@ -1,6 +1,8 @@
 package br.com.fescfafic.listaencapsulamento.Model;
 
-public class Carro extends Veiculo {
+import br.com.fescfafic.listaencapsulamento.Contratos.ICarroComportamento;
+
+public class Carro extends Veiculo implements ICarroComportamento {
 
     protected String tipoDeCombustivel;
     protected int qtdPortas;
@@ -65,5 +67,32 @@ public class Carro extends Veiculo {
     @Override
     public void passarMarcha(int valor) {
         System.out.printf("O carro engatou a %dª marcha\n", valor);
+    }
+
+    @Override
+    public void abrirPorta(int posicaoPorta) {
+        if (this.qtdPortas == 0) {
+            System.out.println("Esse carro nao tem portas");
+        } else if (posicaoPorta <= this.qtdPortas) {
+            switch (posicaoPorta) {
+                case 1:
+                    System.out.println("A porta do motorista foi aberta");
+                case 2:
+                    System.out.println("A porta do passageiro foi aberta");
+                case 3:
+                    System.out.println("A porta traseira atras do motorista foi aberta");
+                case 4:
+                    System.out.println("A porta traseira atras do passageiro foi aberta");
+                default:
+                    System.out.printf("A %dª porta foi aberta !?");
+            }
+        } else {
+            System.out.printf("Esse carro so tem %d portas", this.qtdPortas);
+        }
+    }
+
+    @Override
+    public void abrirPortaMata() {
+        System.out.println("O carro abriu o porta malas");
     }
 }

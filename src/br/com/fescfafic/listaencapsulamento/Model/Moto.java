@@ -1,6 +1,8 @@
 package br.com.fescfafic.listaencapsulamento.Model;
 
-public class Moto extends Veiculo {
+import br.com.fescfafic.listaencapsulamento.Contratos.IMotoComportamento;
+
+public class Moto extends Veiculo implements IMotoComportamento {
     protected int cilindradas;
     protected String tipoDeRoda;
     protected int qtdDeMarchas;
@@ -8,7 +10,8 @@ public class Moto extends Veiculo {
 
     public Moto() {}
 
-    public Moto(int anoDeFabricacao, String modelo, String marca, int cilindradas, String tipoDeRoda, int qtdDeMarchas, String categoria) {
+    public Moto(int anoDeFabricacao, String modelo, String marca, int cilindradas, String tipoDeRoda,
+                int qtdDeMarchas, String categoria) {
         super(anoDeFabricacao, modelo, marca);
         this.cilindradas = cilindradas;
         this.tipoDeRoda = tipoDeRoda;
@@ -62,10 +65,22 @@ public class Moto extends Veiculo {
 
     @Override
     public void passarMarcha(int valor) {
-        if (valor <= this.qtdDeMarchas || this.qtdDeMarchas == 0) {
+        if (this.qtdDeMarchas == 0) {
+            System.out.println("Essa moto e automatica");
+        } else if (valor <= this.qtdDeMarchas) {
             System.out.printf("A moto engatou a %dª marcha\n", valor);
         } else {
             System.out.printf("Essa moto so tem %d marchas\n", this.qtdDeMarchas);
         }
+    }
+
+    @Override
+    public void cortarGiroDoMotor(int segundos) {
+        System.out.printf("A moto cortou giro BolololoPAH por %d segundos\n", segundos);
+    }
+
+    @Override
+    public void empinarMoto() {
+        System.out.println("A moto deu um grau");
     }
 }
